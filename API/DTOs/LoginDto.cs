@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace API.DTOs
 {
-    public class LoginDto
+    public class LoginDTO
     {
         public string Username{ get; set; } // username camel case doesnt have to match
 

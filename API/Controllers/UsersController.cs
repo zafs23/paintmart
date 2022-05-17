@@ -26,7 +26,7 @@ namespace API.Controllers
             //return _context.Users.ToList(); // blocking a thread
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult<AppUser>> GetUser(int id)
         {

@@ -23,10 +23,23 @@ export class AccountService {
           localStorage.setItem('user', JSON.stringify(user));
           this.currUserSource.next(user);
         }
+        /**return user; let you show the user when registered */
       })
     )
   }
-    setCurrUser(user: User){
+
+  register(model: any){
+    return this.http.post(this.baseUrl + 'account/register', model).pipe(
+      map((user : User) => {
+        if (user){
+        localStorage.setItem('user', JSON.stringify(user));
+        this.currUserSource.next(user);
+        }
+      })
+    )
+  }
+
+  setCurrUser(user: User){
       this.currUserSource.next(user);
   }
 

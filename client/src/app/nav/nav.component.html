@@ -6,7 +6,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>-->
             <!--<div class="collapse navbar-collapse" id="navbarCollapse">-->
-              <ul class="navbar-nav mr-auto" *ngIf="loggedIn">
+              <ul class="navbar-nav mr-auto" *ngIf="currUser$ | async">
                 <li class="nav-item">
                   <a class="nav-link" href="#">Paintings</a>
                 </li>
@@ -21,7 +21,7 @@
                 </li>
               </ul>
 
-              <div class="dropdown" *ngIf="loggedIn" dropdown>
+              <div class="dropdown" *ngIf="currUser$ | async" dropdown>
                 <a class="dropdown-toggle text-light" dropdownToggle> Welcome User </a>
                   <div class="dropdown-menu mt-3" *dropdownMenu>
                     <a class="dropdown-item"> Edit Profile</a>
@@ -30,7 +30,7 @@
                   </div>
               </div>
 
-              <form *ngIf="!loggedIn" #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" 
+              <form *ngIf="(currUser$ | async) === null" #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" 
                 autocomplete="off">
                 <input 
                   name="username"

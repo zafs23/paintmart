@@ -12,22 +12,14 @@ export class AppComponent implements OnInit {
   title = 'the paintmart app';
   users: any;
 
-  constructor(private http: HttpClient, private accountService: AccountService) {}
+  constructor(private accountService: AccountService) {}
 
   ngOnInit(): void{
-    this.gerUsers();
     this.setCurrUser();
   }
 
   setCurrUser(){
     const user: User = JSON.parse(localStorage.getItem('user'));
     this.accountService.setCurrUser(user);
-  }
-
-  gerUsers(){
-    this.http.get('https://localhost:5001/api/users').subscribe({
-      next: response => this.users = response,
-      error: error => console.log(error)
-    })
   }
 }

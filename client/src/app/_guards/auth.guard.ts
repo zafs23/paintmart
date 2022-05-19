@@ -16,7 +16,8 @@ export class AuthGuard implements CanActivate {
     return this.accountService.currUser$.pipe(
       map(user => {
         if(user) return true; /** this true is the observale true */
-        this.toastr.error('Register first!')
+        this.toastr.error('Register first!');
+        return false;
       })
     )
   }

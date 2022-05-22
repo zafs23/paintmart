@@ -36,10 +36,10 @@ namespace API.Entities
 
         public ICollection<Painting> Paintings { get; set; } // 1 to many 
 
-        public int GetUserAge()
-        {
-            return BirthDate.CalculateAge();
-        }
+        //public int GetUserAge()
+        //{
+        //    return BirthDate.CalculateAge();
+        //}
 
         
 

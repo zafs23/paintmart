@@ -28,11 +28,12 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers()
         {
-            var users = await _userRepository.GetUserAsync();
+            //var users = await _userRepository.GetUserAsync();
+            var users = await _userRepository.GetMemberDTOsAsync();
 
-            var usersToReturn = _mapper.Map<IEnumerable<MemberDTO>>(users);
+            //var usersToReturn = _mapper.Map<IEnumerable<MemberDTO>>(users);
 
-            return Ok(usersToReturn);
+            return Ok(users);
             //return _context.Users.ToList(); // blocking a thread
         }
 
@@ -40,9 +41,7 @@ namespace API.Controllers
         [HttpGet("{username}")]
         public async Task<ActionResult<MemberDTO>> GetUser(string username)
         {
-            var user = await _userRepository.GetUserByUsernameAsync(username);
-
-            return _mapper.Map<MemberDTO>(user);
+            return await _userRepository.GetMemberDTOAsync(username);
         }
     }
 }

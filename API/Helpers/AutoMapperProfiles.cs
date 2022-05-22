@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using API.Entities;
 using AutoMapper;
 using API.DTOs;
+using API.Extensions;
 
 namespace API.Helpers
 {
@@ -14,7 +15,9 @@ namespace API.Helpers
         {
             CreateMap<AppUser, MemberDTO>()
                 .ForMember( dest => dest.ProfilePhotoUrl, opts => opts.MapFrom(
-                    src => src.Paintings.FirstOrDefault ( x => x.IsProfile).Url));
+                    src => src.Paintings.FirstOrDefault ( x => x.IsProfile).Url))
+                    .ForMember (dest => dest.Age, opts => opts.MapFrom
+                    ( src => src.BirthDate.CalculateAge()));
 
             CreateMap<Painting, PaintingDTO>();
         }
